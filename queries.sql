@@ -149,9 +149,15 @@ except
 select LASTNAME, FIRSTNAME, EMPLOYEENUMBER from EMPLOYEES 
 inner join CUSTOMERS on
 CUSTOMERS.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER;
--- 40) list the states and the country tha tthe state is part of that have customer but not offices, offices but not customers or both one or more customer and one or motre offices all in one query
-
--- 41) list the product code and product name of every product that have never ben in an order in which the customer asked for more than 48 of them
+-- 40) list the states and the country tha the state is part of that have customer but not offices, offices but not customers or both one or more customer and one or motre offices all in one query
+select * from (select distinct state, country, 'customer' as category from (select "STATE", COUNTRY from CUSTOMERS except select state, country from OFFICES) as tmp
+union
+select distinct state, country, 'offices' as category from (select state, country from offices except select state, country from customers) as tmp2
+union
+select state, country, 'both' as category from (select state, country from customers intersect select state, country from offices) as tmp3) as tmp4
+where state is not null
+order by country, state;
+-- 41) list the product code and product name of every product that have never been in an order in which the customer asked for more than 48 of them
 
 -- 42) list the first name and last name of any customer who ordered any products from either of the two product lines 'trains' or 'trucks and buses'
 SELECT CONTACTFIRSTNAME, CONTACTLASTNAME from CUSTOMERS
