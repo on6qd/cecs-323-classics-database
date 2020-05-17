@@ -220,7 +220,12 @@ having sum(QUANTITYORDERED * PRICEEACH) = (select max(total) from (SELECT ORDERN
 -- 53) which products have an msrp within 5% of the average msrp across all products
 
 -- 54) list all of the customers who have never made a payment on the same date as another customer
-
+select customername from customers
+inner join (SELECT customernumber from customers except
+select c1.customernumber from payments c1, payments c2
+where c1.customernumber != c2.customernumber 
+and c1.paymentdate = c2.PAYMENTDATE) as tmp 
+on customers.customernumber = tmp.customernumber;
 -- 55) find customers who have ordered the same thing. find only those customer pairs who have orded the same thing as each other at least 201 times
 
 -- 56) what is the manager who manages the greatest number of employees
