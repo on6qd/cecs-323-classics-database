@@ -115,3 +115,7 @@ SELECT PRODUCTNAME, (MSRP - BUYPRICE) as profit from PRODUCTS;
 select customername from customers
 except
 select customername from customers natural join orders natural join ORDERDETAILS where year(ORDERDATE) = 2015;
+-- 38) list all people that we deal with 
+SELECT CONTACTFIRSTNAME as first_name, CONTACTLASTNAME as last_name, CUSTOMERNAME as company_name from customers
+union
+select FIRSTNAME as first_name, LASTNAME as last_name, 'employee' as company_name from employees;
