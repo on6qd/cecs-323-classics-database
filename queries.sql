@@ -41,3 +41,6 @@ select * from customers where CREDITLIMIT = 0;
 
 -- 10) list all offices not in the usa
 SELECT * from OFFICES WHERE COUNTRY != 'USA';
+
+-- 11) list orders made between june 16, 2014 and july 7, 2014 
+SELECT * from ORDERS where ORDERDATE between '06/16/2014' and '07/07/2014';
