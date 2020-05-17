@@ -118,7 +118,10 @@ SELECT ORDERNUMBER, sum(QUANTITYORDERED * PRICEEACH) as ordertotal from ORDERDET
 group by ORDERNUMBER 
 having sum(QUANTITYORDERED * PRICEEACH) > 60000;
 -- 33) list the products and the profit that we have made on them
-
+SELECT PRODUCTNAME, sum((PRICEEACH - BUYPRICE) * QUANTITYORDERED) as profit from orderdetails natural join products
+group by PRODUCTNAME
+having sum((PRICEEACH - BUYPRICE) * QUANTITYORDERED) > 60000
+order by profit desc;
 -- 34) 
 
 -- 35) what is the profit per product
