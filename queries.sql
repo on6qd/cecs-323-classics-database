@@ -178,8 +178,9 @@ SELECT distinct c1.customername, c1."STATE" from customers c1, customers c2 wher
 and c1."STATE" = c2."STATE" and c1.COUNTRY = c2.COUNTRY) as tmp
 where state is not null;
 -- 44) what product that makes us the most money
-
--- 45) lis tthe product lines and vendors for product lines which are suppport by < 5 vendors
+SELECT PRODUCTNAME from PRODUCTS natural join ORDERDETAILS
+where QUANTITYORDERED * PRICEEACH >= all (select max(profits) from (select PRODUCTCODE, QUANTITYORDERED * PRICEEACH as profits from ORDERDETAILS) as tmp);
+-- 45) list tthe product lines and vendors for product lines which are suppport by < 5 vendors
 
 -- 46) list the products in the product line with t most number of products
 
@@ -207,7 +208,7 @@ where state is not null;
 
 -- 58) list all employees that have the same last name
 
--- 59) select the name of each of ttwo customers who have made at least one payment on the same date at the other
+-- 59) select the name of each of two customers who have made at least one payment on the same date at the other
 
 -- 60) find customers that share the same state and country
 
