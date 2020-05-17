@@ -181,7 +181,11 @@ where state is not null;
 SELECT PRODUCTNAME from PRODUCTS natural join ORDERDETAILS
 where QUANTITYORDERED * PRICEEACH >= all (select max(profits) from (select PRODUCTCODE, QUANTITYORDERED * PRICEEACH as profits from ORDERDETAILS) as tmp);
 -- 45) list the product lines and vendors for product lines which are suppport by < 5 vendors
-
+SELECT PRODUCTLINE, PRODUCTVENDOR
+from products where
+PRODUCTLINE = (select PRODUCTLINE from PRODUCTS
+group by PRODUCTLINE
+having count(PRODUCTVENDOR) < 5);
 -- 46) list the products in the product line with the most number of products
 SELECT PRODUCTNAME from PRODUCTS 
 where PRODUCTLINE = (select PRODUCTLINE from (select PRODUCTLINE, count(*) as number_of_products from PRODUCTS group by productline) as tmp,
