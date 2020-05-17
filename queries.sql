@@ -280,3 +280,7 @@ where c1.CUSTOMERNUMBER!= c2.CUSTOMERNUMBER
        and c2."STATE" is not null) as tmp
 where tmp.country in ('UK', 'Australia', 'Italy', 'Canada');
 -- 61) find all of the customer that have the sames sales representative as some other customer and either customer name has 'Australian' in it
+select c1.customername, c2.customername from customers c1, customers c2 
+where c1.CUSTOMERNUMBER < c2.CUSTOMERNUMBER
+and c1.SALESREPEMPLOYEENUMBER = c2.SALESREPEMPLOYEENUMBER
+and (c1.CUSTOMERNAME like '%Australian%' or c2.customername like '%Australian%');
