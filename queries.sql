@@ -26,3 +26,9 @@ select firstname, lastname from employees order by lastname, firstname;
 
 -- 5) List all employee job titles
 select distinct JOBTITLE from EMPLOYEES;
+
+-- 6) List all products along with their product scale
+SELECT PRODUCTNAME, PRODUCTSCALE from PRODUCTS;
+
+-- 7) List all territories where we have offices 
+SELECT distinct TERRITORY from OFFICES;
