@@ -62,3 +62,7 @@ select * from products where productvendor != 'Highway 66 Mini Classics';
 
 -- 17) list all employees that don't have a manager 
 select * from EMPLOYEES where REPORTSTO is null;
+
+-- 18) display every order along with the details of that order for order numbers 10270, 10272, 10279
+SELECT * from orders natural join ORDERDETAILS
+where ORDERNUMBER in (10270, 10272, 10279);
