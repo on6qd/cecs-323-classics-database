@@ -195,7 +195,18 @@ where tmp.number_of_products = tmp3.max_value);
 SELECT CONTACTFIRSTNAME, CONTACTLASTNAME FROM CUSTOMERS where "STATE" = 
 (SELECT "STATE" from OFFICES where CITY = 'San Francisco');
 -- 48) what is the customer and sales person of the highest priced order ?
-
+SELECT CUSTOMERNAME, FIRSTNAME as employee_fname, LASTNAME as employee_lname 
+from EMPLOYEES inner join CUSTOMERS on EMPLOYEES.EMPLOYEENUMBER = CUSTOMERS.SALESREPEMPLOYEENUMBER
+inner join ORDERS on
+CUSTOMERS.CUSTOMERNUMBER = ORDERS.CUSTOMERNUMBER
+where ORDERNUMBER = (
+select ORDERNUMBER from 
+(SELECT ORDERNUMBER, sum(QUANTITYORDERED * PRICEEACH) as summation from ORDERDETAILS
+group by ORDERNUMBER) as summations
+inner join 
+(select max(summation) as highest_order from (SELECT ORDERNUMBER, sum(QUANTITYORDERED * PRICEEACH) as summation from ORDERDETAILS
+group by ORDERNUMBER) as max_value) as tmp
+on summations.summation = tmp.highest_order);
 -- 49) what is the order number and the cost of teh order for the most expensive orders
 
 -- 50) what is the name of the customer, the order number and the total cost of the most expensive orders
