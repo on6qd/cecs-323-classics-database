@@ -38,3 +38,6 @@ SELECT CONTACTFIRSTNAME, CONTACTLASTNAME, CREDITLIMIT from customers where CREDI
 
 -- 9) select customers who do not have a credit limit
 select * from customers where CREDITLIMIT = 0;
+
+-- 10) list all offices not in the usa
+SELECT * from OFFICES WHERE COUNTRY != 'USA';
