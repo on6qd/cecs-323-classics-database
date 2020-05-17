@@ -32,3 +32,6 @@ SELECT PRODUCTNAME, PRODUCTSCALE from PRODUCTS;
 
 -- 7) List all territories where we have offices 
 SELECT distinct TERRITORY from OFFICES;
+
+-- 8) select contact firstname, contact lastname and creditlimit for all customers where credit limit > 50000
+SELECT CONTACTFIRSTNAME, CONTACTLASTNAME, CREDITLIMIT from customers where CREDITLIMIT > 50000;
