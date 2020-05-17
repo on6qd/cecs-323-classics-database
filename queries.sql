@@ -125,3 +125,14 @@ except
 select LASTNAME, FIRSTNAME, EMPLOYEENUMBER from EMPLOYEES 
 inner join CUSTOMERS on
 CUSTOMERS.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER;
+-- 40)
+-- 41) list the product code and product name of every product that have never ben in an order in which the customer asked for more than 48 of them
+
+-- 42) list the first name and last name of any customer who ordered any products from either of the two product lines 'trains' or 'trucks and buses'
+SELECT CONTACTFIRSTNAME, CONTACTLASTNAME from CUSTOMERS
+natural join orders natural join ORDERDETAILS natural join PRODUCTS
+where PRODUCTLINE = 'Trains'
+union
+select CONTACTFIRSTNAME, CONTACTLASTNAME from customers
+natural join orders natural join orderdetails natural join products
+where productline = 'Trucks and Buses';
