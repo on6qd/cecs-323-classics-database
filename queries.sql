@@ -173,7 +173,10 @@ natural join orders natural join orderdetails natural join products
 where productline = 'Trucks and Buses'
 order by CONTACTFIRSTNAME, CONTACTLASTNAME; 
 -- 43) list the name of all customers who do not live in the same state and country with any other customer
-
+select customername from (select customername, "STATE" from customers except
+SELECT distinct c1.customername, c1."STATE" from customers c1, customers c2 where c1.CUSTOMERNUMBER != c2.CUSTOMERNUMBER
+and c1."STATE" = c2."STATE" and c1.COUNTRY = c2.COUNTRY) as tmp
+where state is not null;
 -- 44) what product that makes us the most money
 
 -- 45) lis tthe product lines and vendors for product lines which are suppport by < 5 vendors
