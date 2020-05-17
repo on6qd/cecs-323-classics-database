@@ -228,7 +228,9 @@ having sum(QUANTITYORDERED * PRICEEACH) = (select max(total) from (SELECT ORDERN
 -- 57) select all employees who work for the manager that manages the greatest number of employee
 
 -- 58) list all employees that have the same last name
-
+SELECT c1.firstname, c1.lastname, c2.FIRSTNAME, c2.LASTNAME from EMPLOYEES c1, EMPLOYEES c2
+where c1.EMPLOYEENUMBER < c2.EMPLOYEENUMBER and
+c1.LASTNAME = c2.LASTNAME;
 -- 59) select the name of each of two customers who have made at least one payment on the same date at the other
 
 -- 60) find customers that share the same state and country
