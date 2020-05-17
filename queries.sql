@@ -17,3 +17,6 @@ SELECT * FROM PAYMENTS;
 
 -- 2) select customer name from customer. sort by customer name
 select customername from customers order by customername;
+
+-- 3) list each of the different status that an order may be in 
+SELECT distinct STATUS from ORDERS;
