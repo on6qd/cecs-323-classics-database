@@ -229,7 +229,15 @@ on customers.customernumber = tmp.customernumber;
 -- 55) find customers who have ordered the same thing. find only those customer pairs who have orded the same thing as each other at least 201 times
 
 -- 56) what is the manager who manages the greatest number of employees
-
+select firstname, lastname from (SELECT e1.firstname, e1.lastname, count(*) as manages from EMPLOYEES e1, EMPLOYEES e2
+where e2.REPORTSTO = e1.EMPLOYEENUMBER
+group by e1.FIRSTNAME, e1.LASTNAME) as manager_table 
+inner join
+(SELECT max(manages) as max_manages from (SELECT e1.firstname, e1.lastname, count(*) as manages from EMPLOYEES e1, EMPLOYEES e2
+where e2.REPORTSTO = e1.EMPLOYEENUMBER
+group by e1.FIRSTNAME, e1.LASTNAME) as temp_table) as max_table
+on 
+manager_table.manages = max_table.max_manages;
 -- 57) select all employees who work for the manager that manages the greatest number of employee
 
 -- 58) list all employees that have the same last name
