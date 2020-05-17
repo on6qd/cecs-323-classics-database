@@ -214,7 +214,11 @@ having sum(QUANTITYORDERED * PRICEEACH) = (select max(total) from (SELECT ORDERN
 SELECT customername, ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from customers natural join orders natural join ORDERDETAILS group by customername, ORDERNUMBER
 having sum(QUANTITYORDERED * PRICEEACH) = (select max(total) from (SELECT ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from ORDERDETAILS group by ORDERNUMBER) as max_value);
 -- 51) perform the above query using a view
+CREATE view question_51 as 
+SELECT customername, ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from customers natural join orders natural join ORDERDETAILS group by customername, ORDERNUMBER
+having sum(QUANTITYORDERED * PRICEEACH) = (select max(total) from (SELECT ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from ORDERDETAILS group by ORDERNUMBER) as max_value);
 
+SELECT * from QUESTION_51;
 -- 52) show all of the customers who have ordered at least on product with the name 'ford' in it, that 'dragon souvenier ltd' has also ordered
 SELECT distinct CUSTOMERNAME from customers natural join orders natural join orderdetails natural join products
 where productname in 
