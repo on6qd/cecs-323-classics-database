@@ -80,3 +80,21 @@ employees on customers.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER
 inner join offices on 
 employees.OFFICECODE = offices.OFFICECODE
 where customers."STATE" = OFFICES."STATE";
+
+-- 22) select customername, orderdate, quantityordered, productline, productname for all orders made and shipped in 2015
+
+-- 23) list products that didn't sell
+
+-- 24) list all customers and their sales rep even if they don't have a sales rep
+
+-- 25) find the total payments made by each customer
+
+-- 26) find the largest payment made by a customer
+select max(AMOUNT) from PAYMENTS;
+-- 27) find the average payment made by a customer
+select avg(AMOUNT) from PAYMENTS;
+-- 28) what is the total number of products per product line
+
+-- 29) what is the number of orders per status
+select STATUS, count(*) as orders_per_status from ORDERS group by status order by orders_per_status desc;
+-- 30) list all offices and the number of employees work in each offices
