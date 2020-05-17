@@ -180,10 +180,13 @@ where state is not null;
 -- 44) what product that makes us the most money
 SELECT PRODUCTNAME from PRODUCTS natural join ORDERDETAILS
 where QUANTITYORDERED * PRICEEACH >= all (select max(profits) from (select PRODUCTCODE, QUANTITYORDERED * PRICEEACH as profits from ORDERDETAILS) as tmp);
--- 45) list tthe product lines and vendors for product lines which are suppport by < 5 vendors
+-- 45) list the product lines and vendors for product lines which are suppport by < 5 vendors
 
--- 46) list the products in the product line with t most number of products
-
+-- 46) list the products in the product line with the most number of products
+SELECT PRODUCTNAME from PRODUCTS 
+where PRODUCTLINE = (select PRODUCTLINE from (select PRODUCTLINE, count(*) as number_of_products from PRODUCTS group by productline) as tmp,
+(select max(number_of_products) as max_value from (SELECT PRODUCTLINE, count(*) as number_of_products from PRODUCTS group by PRODUCTLINE) as tmp2) as tmp3
+where tmp.number_of_products = tmp3.max_value);
 -- 47) find the first name and last name of all customer contacts whose customer is located in the same state as the san francisco office
 
 -- 48) what is the customer and sales person of the highest priced order ?
