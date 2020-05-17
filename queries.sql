@@ -227,6 +227,13 @@ where c1.customernumber != c2.customernumber
 and c1.paymentdate = c2.PAYMENTDATE) as tmp 
 on customers.customernumber = tmp.customernumber;
 -- 55) find customers who have ordered the same thing. find only those customer pairs who have orded the same thing as each other at least 201 times
+select tmp1.customername, tmp2.customername from (SELECT * from customers natural join orders natural join orderdetails) as tmp1,
+(select * from customers natural join orders natural join orderdetails) as tmp2
+where 
+tmp1.customernumber < tmp2.customernumber
+and tmp1.productcode = tmp2.productcode
+group by tmp1.customername, tmp2.customername
+having count(*) > 201;
 
 -- 56) what is the manager(s) who manages the greatest number of employees
 select firstname, lastname from (SELECT e1.firstname, e1.lastname, count(*) as manages from EMPLOYEES e1, EMPLOYEES e2
