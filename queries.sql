@@ -223,7 +223,10 @@ natural join orders natural join orderdetails natural join products
 where CUSTOMERNAME = 'Dragon Souveniers, Ltd.'
 and PRODUCTNAME like '%Ford%');
 -- 53) which products have an msrp within 5% of the average msrp across all products
-
+SELECT PRODUCTNAME, MSRP
+from PRODUCTS
+group by productname, MSRP
+having MSRP >= 0.95 * (select avg(MSRP) from PRODUCTS)  and MSRP <= 1.05 * (select avg(MSRP) from PRODUCTS);
 -- 54) list all of the customers who have never made a payment on the same date as another customer
 select customername from customers
 inner join (SELECT customernumber from customers except
