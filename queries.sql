@@ -114,7 +114,9 @@ select OFFICECODE, count(*) as number_of_employees from employees group by OFFIC
 -- 31) list the total number of products per product line where number of products > 3
 select PRODUCTLINE, count(*) as number_of_products from PRODUCTS group by PRODUCTLINE having count(*) > 3;
 -- 32) list the ordernumber and ordertotal for all orders that totaled more than 60000
-
+SELECT ORDERNUMBER, sum(QUANTITYORDERED * PRICEEACH) as ordertotal from ORDERDETAILS
+group by ORDERNUMBER 
+having sum(QUANTITYORDERED * PRICEEACH) > 60000;
 -- 33) list the products and the profit that we have made on them
 
 -- 34) 
