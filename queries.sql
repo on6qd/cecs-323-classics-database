@@ -216,7 +216,12 @@ having sum(QUANTITYORDERED * PRICEEACH) = (select max(total) from (SELECT ORDERN
 -- 51) perform the above query using a view
 
 -- 52) show all of the customers who have ordered at least on product with the name 'ford' in it, that 'dragon souvenier ltd' has also ordered
-
+SELECT distinct CUSTOMERNAME from customers natural join orders natural join orderdetails natural join products
+where productname in 
+(SELECT distinct PRODUCTNAME from CUSTOMERS 
+natural join orders natural join orderdetails natural join products
+where CUSTOMERNAME = 'Dragon Souveniers, Ltd.'
+and PRODUCTNAME like '%Ford%');
 -- 53) which products have an msrp within 5% of the average msrp across all products
 
 -- 54) list all of the customers who have never made a payment on the same date as another customer
@@ -234,7 +239,6 @@ tmp1.customernumber < tmp2.customernumber
 and tmp1.productcode = tmp2.productcode
 group by tmp1.customername, tmp2.customername
 having count(*) > 201;
-
 -- 56) what is the manager(s) who manages the greatest number of employees
 select firstname, lastname from (SELECT e1.firstname, e1.lastname, count(*) as manages from EMPLOYEES e1, EMPLOYEES e2
 where e2.REPORTSTO = e1.EMPLOYEENUMBER
