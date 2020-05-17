@@ -81,7 +81,17 @@ inner join offices on
 employees.OFFICECODE = offices.OFFICECODE
 where customers."STATE" = OFFICES."STATE";
 -- 22) select customername, orderdate, quantityordered, productline, productname for all orders made and shipped in 2015
-
+SELECT customername, orderdate, quantityordered, productline, productname from 
+PRODUCTLINES
+natural join 
+PRODUCTS 
+natural join 
+ORDERDETAILS 
+natural join 
+ORDERS 
+natural join 
+CUSTOMERS
+where year(ORDERDATE) = 2015 and year(SHIPPEDDATE) = 2015;
 -- 23) list products that didn't sell
 SELECT PRODUCTNAME from PRODUCTS 
 except
