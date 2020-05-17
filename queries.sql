@@ -109,3 +109,9 @@ select PRODUCTLINE, count(*) as number_of_products from PRODUCTS group by PRODUC
 
 -- 35) what is the profit per product
 SELECT PRODUCTNAME, (MSRP - BUYPRICE) as profit from PRODUCTS;
+-- 36)]
+
+-- 37) list all customers who didn't order in 2015 
+select customername from customers
+except
+select customername from customers natural join orders natural join ORDERDETAILS where year(ORDERDATE) = 2015;
