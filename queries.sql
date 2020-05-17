@@ -101,3 +101,11 @@ select STATUS, count(*) as orders_per_status from ORDERS group by status order b
 select OFFICECODE, count(*) as number_of_employees from employees group by OFFICECODE order by number_of_employees desc;
 -- 31) list the total number of products per product line where number of products > 3
 select PRODUCTLINE, count(*) as number_of_products from PRODUCTS group by PRODUCTLINE having count(*) > 3;
+-- 32) list the ordernumber and ordertotal for all orders that totaled more than 60000
+
+-- 33) list the products and the profit that we have made on them
+
+-- 34) 
+
+-- 35) what is the profit per product
+SELECT PRODUCTNAME, (MSRP - BUYPRICE) as profit from PRODUCTS;
