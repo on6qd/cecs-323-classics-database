@@ -119,3 +119,9 @@ select customername from customers natural join orders natural join ORDERDETAILS
 SELECT CONTACTFIRSTNAME as first_name, CONTACTLASTNAME as last_name, CUSTOMERNAME as company_name from customers
 union
 select FIRSTNAME as first_name, LASTNAME as last_name, 'employee' as company_name from employees;
+-- 39) list the last name, first name and emploee number of all employees who do not have any customers
+select LASTNAME, FIRSTNAME, EMPLOYEENUMBER from EMPLOYEES
+except
+select LASTNAME, FIRSTNAME, EMPLOYEENUMBER from EMPLOYEES 
+inner join CUSTOMERS on
+CUSTOMERS.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER;
