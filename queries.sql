@@ -135,4 +135,42 @@ where PRODUCTLINE = 'Trains'
 union
 select CONTACTFIRSTNAME, CONTACTLASTNAME from customers
 natural join orders natural join orderdetails natural join products
-where productline = 'Trucks and Buses';
+where productline = 'Trucks and Buses'
+order by CONTACTFIRSTNAME, CONTACTLASTNAME; 
+-- 43) list the name of all customers who do not live in the same state and country with any other customer
+
+-- 44) what product that makes us the most money
+
+-- 45) lis tthe product lines and vendors for product lines which are suppport by < 5 vendors
+
+-- 46) list the products in the product line with t most number of products
+
+-- 47) find the first name and last name of all customer contacts whose customer is located in the same state as the san francisco office
+
+-- 48) what is the customer and sales person of the highest priced order ?
+
+-- 49) what is the order number and the cost of teh order for the most expensive orders
+
+-- 50) what is the name of the customer, the order number and the total cost of the most expensive orders
+
+-- 51) perform the above query using a view
+
+-- 52) show all of the customers who have ordered at least on product with the name 'ford' in it, that 'dragon souvenier ltd' has also ordered
+
+-- 53) which products have an msrp within 5% of the average msrp across all products
+
+-- 54) list all of the customers who have never made a payment on the same date as another customer
+
+-- 55) find customers who have ordered the same thing. find only those customer pairs who have orded the same thing as each other at least 201 times
+
+-- 56) what is the manager who manages the greatest number of employees
+
+-- 57) select all employees who work for the manager that manages the greatest number of employee
+
+-- 58) list all employees that have the same last name
+
+-- 59) select the name of each of ttwo customers who have made at least one payment on the same date at the other
+
+-- 60) find customers that share the same state and country
+
+-- 61) find all of the customer that have the sames sales representative as some other customer and either customer name has 'Australian' in it
