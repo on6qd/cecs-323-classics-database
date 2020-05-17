@@ -131,7 +131,10 @@ order by average_amount_on_product desc;
 -- 35) what is the profit per product
 SELECT PRODUCTNAME, (MSRP - BUYPRICE) as profit from PRODUCTS;
 -- 36)list the customername and their total orders across all orders that the custoemr has ever placed with us, in descending order by order total for those customer who have ordered more than 100000 from us
-
+select CUSTOMERNAME, sum(QUANTITYORDERED * PRICEEACH) as total from customers natural join orders natural join orderdetails
+group by customername
+having sum(QUANTITYORDERED * priceeach) > 100000
+order by CUSTOMERNAME;
 -- 37) list all customers who didn't order in 2015 
 select customername from customers
 except
@@ -146,7 +149,8 @@ except
 select LASTNAME, FIRSTNAME, EMPLOYEENUMBER from EMPLOYEES 
 inner join CUSTOMERS on
 CUSTOMERS.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER;
--- 40) 
+-- 40) list the states and the country tha tthe state is part of that have customer but not offices, offices but not customers or both one or more customer and one or motre offices all in one query
+
 -- 41) list the product code and product name of every product that have never ben in an order in which the customer asked for more than 48 of them
 
 -- 42) list the first name and last name of any customer who ordered any products from either of the two product lines 'trains' or 'trucks and buses'
