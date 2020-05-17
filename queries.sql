@@ -73,3 +73,10 @@ select distinct PRODUCTLINE, PRODUCTVENDOR from PRODUCTLINES natural join PRODUC
 -- 20) select customers that live in the same state as one of our offices
 select * from customers inner join offices on
 customers."STATE" = offices."STATE";
+
+-- 21) select customers that live in the same state as their representative
+select customername from customers inner join
+employees on customers.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER
+inner join offices on 
+employees.OFFICECODE = offices.OFFICECODE
+where customers."STATE" = OFFICES."STATE";
