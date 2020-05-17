@@ -69,3 +69,7 @@ where ORDERNUMBER in (10270, 10272, 10279);
 
 -- 19) list of productlines and vendors that supply the products in the productline
 select distinct PRODUCTLINE, PRODUCTVENDOR from PRODUCTLINES natural join PRODUCTS;
+
+-- 20) select customers that live in the same state as one of our offices
+select * from customers inner join offices on
+customers."STATE" = offices."STATE";
