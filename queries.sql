@@ -66,3 +66,6 @@ select * from EMPLOYEES where REPORTSTO is null;
 -- 18) display every order along with the details of that order for order numbers 10270, 10272, 10279
 SELECT * from orders natural join ORDERDETAILS
 where ORDERNUMBER in (10270, 10272, 10279);
+
+-- 19) list of productlines and vendors that supply the products in the productline
+select distinct PRODUCTLINE, PRODUCTVENDOR from PRODUCTLINES natural join PRODUCTS;
