@@ -14,3 +14,6 @@ SELECT * FROM ORDERS;
 SELECT * FROM ORDERDETAILS;
 
 SELECT * FROM PAYMENTS;
+
+-- 2) select customer name from customer. sort by customer name
+select customername from customers order by customername;
