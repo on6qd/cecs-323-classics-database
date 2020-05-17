@@ -94,7 +94,7 @@ select max(AMOUNT) from PAYMENTS;
 -- 27) find the average payment made by a customer
 select avg(AMOUNT) from PAYMENTS;
 -- 28) what is the total number of products per product line
-
+select PRODUCTLINE, count(*) as number_of_products from products group by PRODUCTLINE order by number_of_products desc;
 -- 29) what is the number of orders per status
 select STATUS, count(*) as orders_per_status from ORDERS group by status order by orders_per_status desc;
 -- 30) list all offices and the number of employees work in each offices
