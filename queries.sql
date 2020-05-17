@@ -207,8 +207,9 @@ inner join
 (select max(summation) as highest_order from (SELECT ORDERNUMBER, sum(QUANTITYORDERED * PRICEEACH) as summation from ORDERDETAILS
 group by ORDERNUMBER) as max_value) as tmp
 on summations.summation = tmp.highest_order);
--- 49) what is the order number and the cost of teh order for the most expensive orders
-
+-- 49) what is the order number and the cost of the order for the most expensive orders
+SELECT ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from ORDERDETAILS group by ORDERNUMBER
+having sum(QUANTITYORDERED * PRICEEACH) = (select max(total) from (SELECT ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from ORDERDETAILS group by ORDERNUMBER) as max_value);
 -- 50) what is the name of the customer, the order number and the total cost of the most expensive orders
 
 -- 51) perform the above query using a view
