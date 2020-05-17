@@ -122,11 +122,15 @@ SELECT PRODUCTNAME, sum((PRICEEACH - BUYPRICE) * QUANTITYORDERED) as profit from
 group by PRODUCTNAME
 having sum((PRICEEACH - BUYPRICE) * QUANTITYORDERED) > 60000
 order by profit desc;
--- 34) 
-
+-- 34)list the average of the money spent on each product across all orders where that product appears when the customer is based in japan
+SELECT PRODUCTNAME, avg(QUANTITYORDERED * PRICEEACH) as average_amount_on_product from products
+natural join products natural join orderdetails natural join orders natural join customers
+where COUNTRY = 'Japan'
+group by PRODUCTNAME
+order by average_amount_on_product desc;
 -- 35) what is the profit per product
 SELECT PRODUCTNAME, (MSRP - BUYPRICE) as profit from PRODUCTS;
--- 36)]
+-- 36)list the customername and their total orders across all orders that the custoemr has ever placed with us, in descending order by order total for those customer who have ordered more than 100000 from us
 
 -- 37) list all customers who didn't order in 2015 
 select customername from customers
@@ -142,7 +146,7 @@ except
 select LASTNAME, FIRSTNAME, EMPLOYEENUMBER from EMPLOYEES 
 inner join CUSTOMERS on
 CUSTOMERS.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER;
--- 40)
+-- 40) 
 -- 41) list the product code and product name of every product that have never ben in an order in which the customer asked for more than 48 of them
 
 -- 42) list the first name and last name of any customer who ordered any products from either of the two product lines 'trains' or 'trucks and buses'
