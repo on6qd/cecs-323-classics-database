@@ -80,11 +80,12 @@ employees on customers.SALESREPEMPLOYEENUMBER = EMPLOYEES.EMPLOYEENUMBER
 inner join offices on 
 employees.OFFICECODE = offices.OFFICECODE
 where customers."STATE" = OFFICES."STATE";
-
 -- 22) select customername, orderdate, quantityordered, productline, productname for all orders made and shipped in 2015
 
 -- 23) list products that didn't sell
-
+SELECT PRODUCTNAME from PRODUCTS 
+except
+SELECT PRODUCTNAME from PRODUCTS inner join ORDERDETAILS on PRODUCTS.PRODUCTCODE = ORDERDETAILS.PRODUCTCODE;
 -- 24) list all customers and their sales rep even if they don't have a sales rep
 SELECT CUSTOMERNAME, SALESREPEMPLOYEENUMBER from customers left outer join EMPLOYEES on 
 SALESREPEMPLOYEENUMBER = EMPLOYEENUMBER;
