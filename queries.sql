@@ -237,7 +237,18 @@ SELECT c1.firstname, c1.lastname, c2.FIRSTNAME, c2.LASTNAME from EMPLOYEES c1, E
 where c1.EMPLOYEENUMBER < c2.EMPLOYEENUMBER and
 c1.LASTNAME = c2.LASTNAME;
 -- 59) select the name of each of two customers who have made at least one payment on the same date at the other
-
--- 60) find customers that share the same state and country
-
+select customername from customers
+inner join (SELECT customernumber from customers except
+select c1.customernumber from payments c1, payments c2
+where c1.customernumber != c2.customernumber 
+and c1.paymentdate != c2.PAYMENTDATE) as tmp 
+on customers.customernumber = tmp.customernumber;
+-- 60) find customers that share the same state and country in the specified region ('UK', 'Australia', 'Italy', 'Canada')
+select * from (SELECT c1.* from customers c1, customers c2 
+where c1.CUSTOMERNUMBER!= c2.CUSTOMERNUMBER 
+       and c1."STATE" = c2."STATE"
+       and c1.COUNTRY = c2.COUNTRY
+       and c1."STATE" is not null
+       and c2."STATE" is not null) as tmp
+where tmp.country in ('UK', 'Australia', 'Italy', 'Canada');
 -- 61) find all of the customer that have the sames sales representative as some other customer and either customer name has 'Australian' in it
