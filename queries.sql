@@ -158,7 +158,11 @@ select state, country, 'both' as category from (select state, country from custo
 where state is not null
 order by country, state;
 -- 41) list the product code and product name of every product that have never been in an order in which the customer asked for more than 48 of them
-
+select PRODUCTCODE, PRODUCTNAME from PRODUCTS
+except 
+select PRODUCTCODE, PRODUCTNAME from PRODUCTS
+natural join ORDERDETAILS WHERE QUANTITYORDERED > 48
+order by PRODUCTNAME;
 -- 42) list the first name and last name of any customer who ordered any products from either of the two product lines 'trains' or 'trucks and buses'
 SELECT CONTACTFIRSTNAME, CONTACTLASTNAME from CUSTOMERS
 natural join orders natural join ORDERDETAILS natural join PRODUCTS
