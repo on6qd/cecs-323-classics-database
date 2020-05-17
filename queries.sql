@@ -23,3 +23,6 @@ SELECT distinct STATUS from ORDERS;
 
 -- 4) list firstname and lastname for each employee. sort by lastname then firstname
 select firstname, lastname from employees order by lastname, firstname;
+
+-- 5) List all employee job titles
+select distinct JOBTITLE from EMPLOYEES;
