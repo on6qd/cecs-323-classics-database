@@ -35,3 +35,6 @@ SELECT distinct TERRITORY from OFFICES;
 
 -- 8) select contact firstname, contact lastname and creditlimit for all customers where credit limit > 50000
 SELECT CONTACTFIRSTNAME, CONTACTLASTNAME, CREDITLIMIT from customers where CREDITLIMIT > 50000;
+
+-- 9) select customers who do not have a credit limit
+select * from customers where CREDITLIMIT = 0;
