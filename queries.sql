@@ -211,7 +211,8 @@ on summations.summation = tmp.highest_order);
 SELECT ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from ORDERDETAILS group by ORDERNUMBER
 having sum(QUANTITYORDERED * PRICEEACH) = (select max(total) from (SELECT ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from ORDERDETAILS group by ORDERNUMBER) as max_value);
 -- 50) what is the name of the customer, the order number and the total cost of the most expensive orders
-
+SELECT customername, ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from customers natural join orders natural join ORDERDETAILS group by customername, ORDERNUMBER
+having sum(QUANTITYORDERED * PRICEEACH) = (select max(total) from (SELECT ORDERNUMBER, sum(QUANTITYORDERED  * PRICEEACH) as total from ORDERDETAILS group by ORDERNUMBER) as max_value);
 -- 51) perform the above query using a view
 
 -- 52) show all of the customers who have ordered at least on product with the name 'ford' in it, that 'dragon souvenier ltd' has also ordered
