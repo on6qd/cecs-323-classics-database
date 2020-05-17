@@ -192,7 +192,8 @@ where PRODUCTLINE = (select PRODUCTLINE from (select PRODUCTLINE, count(*) as nu
 (select max(number_of_products) as max_value from (SELECT PRODUCTLINE, count(*) as number_of_products from PRODUCTS group by PRODUCTLINE) as tmp2) as tmp3
 where tmp.number_of_products = tmp3.max_value);
 -- 47) find the first name and last name of all customer contacts whose customer is located in the same state as the san francisco office
-
+SELECT CONTACTFIRSTNAME, CONTACTLASTNAME FROM CUSTOMERS where "STATE" = 
+(SELECT "STATE" from OFFICES where CITY = 'San Francisco');
 -- 48) what is the customer and sales person of the highest priced order ?
 
 -- 49) what is the order number and the cost of teh order for the most expensive orders
