@@ -86,7 +86,8 @@ where customers."STATE" = OFFICES."STATE";
 -- 23) list products that didn't sell
 
 -- 24) list all customers and their sales rep even if they don't have a sales rep
-
+SELECT CUSTOMERNAME, SALESREPEMPLOYEENUMBER from customers left outer join EMPLOYEES on 
+SALESREPEMPLOYEENUMBER = EMPLOYEENUMBER;
 -- 25) find the total payments made by each customer
 select CUSTOMERNUMBER, sum(AMOUNT) as total_payments from PAYMENTS group by CUSTOMERNUMBER;
 -- 26) find the largest payment made by a customer
