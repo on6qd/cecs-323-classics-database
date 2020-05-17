@@ -99,3 +99,5 @@ select PRODUCTLINE, count(*) as number_of_products from products group by PRODUC
 select STATUS, count(*) as orders_per_status from ORDERS group by status order by orders_per_status desc;
 -- 30) list all offices and the number of employees work in each offices
 select OFFICECODE, count(*) as number_of_employees from employees group by OFFICECODE order by number_of_employees desc;
+-- 31) list the total number of products per product line where number of products > 3
+select PRODUCTLINE, count(*) as number_of_products from PRODUCTS group by PRODUCTLINE having count(*) > 3;
